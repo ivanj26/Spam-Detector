@@ -1,7 +1,66 @@
-body{
-	background-color: #cecece;
+@font-face{
+    font-family: RalewayRegular;
+    src: url('fonts/Raleway/Raleway-Regular.ttf');
 }
 
-h1{
-	color: #235344;
+@font-face{
+    font-family: RalewayLight;
+    src: url('fonts/Raleway/Raleway-Light.ttf');
+}
+
+/*Style Header*/
+.header{
+    text-align: center;
+    width: 100vw;
+    font-family: RalewayRegular;
+    padding: 16px;
+    color : #36486b;
+    background: #76ed98;
+    opacity: 0.5;
+    box-sizing: border-box;
+}
+
+/*Style Body*/
+body{
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #006699 0%, #006666 84%);
+    background-repeat: no-repeat;
+    background-size:100vw 100vh;
+}
+
+.search {
+                padding:8px 15px;
+                background:rgba(50, 50, 50, 0.2);
+                border:0px solid #dbdbdb;
+}
+
+input[type=search]{
+    width: 20%;
+    height: 7%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin: 16px 16px 16px 16px;
+    font-family: RalewayLight;
+    font-size: 20px;
+    background-color: cornflowerblue;
+    border: none;
+    -webkit-transition: width 0.3s ease-in-out;
+    color: white;
+}
+
+input[type=search]:focus{
+    width:30%;
+}
+
+::placeholder{
+    color:white;
+    opacity: 0.7;
+}
+
+.container{
+    margin: 16px;
+    width: 50% auto;
+    text-align: center;
 }
