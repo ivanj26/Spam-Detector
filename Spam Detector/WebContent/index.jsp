@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" pageEncoding="UTF-8" session="false"%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Spam Detector</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+	  <body>
         <div class="header">
             <h1>Spam Detector</h1>
-            <p> A web based application detect spam using BM, KMP, and Regex Algorithm</p>
+            <p style="text-align: center"> A web based application detect spam using BM, KMP, and Regex Algorithm</p>
         </div>
         <div class="container">
             <form>
-                <input type="search" placeholder="Search tweets..">
+                <input type="search" onblur="this.placeholder= 'Search tweets..'" tabindex="" onfocus="this.placeholder = ''">
             </form>
         </div>
     </body>

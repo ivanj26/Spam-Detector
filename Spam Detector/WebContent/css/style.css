@@ -8,49 +8,56 @@
     src: url('fonts/Raleway/Raleway-Light.ttf');
 }
 
-/*Style Header*/
 .header{
     text-align: center;
-    width: 100vw;
     font-family: RalewayRegular;
     padding: 16px;
     color : #36486b;
     background: #76ed98;
-    opacity: 0.5;
+    opacity: 0.60;
     box-sizing: border-box;
+    -moz-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
+    -webkit-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, .5);
 }
 
 /*Style Body*/
 body{
-	box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #006699 0%, #006666 84%);
     background-repeat: no-repeat;
     background-size:100vw 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #006699 0%, #006666 84%);
 }
 
 .search {
-                padding:8px 15px;
-                background:rgba(50, 50, 50, 0.2);
-                border:0px solid #dbdbdb;
+    padding:8px;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
 }
 
 input[type=search]{
     width: 20%;
     height: 7%;
-    padding: 8px;
+    padding: 16px;
     box-sizing: border-box;
-    margin: 16px 16px 16px 16px;
+    z-index: -1;
+    -moz-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
+    -webkit-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, .5);
+    margin: 16px;
     font-family: RalewayLight;
     font-size: 20px;
     background-color: cornflowerblue;
     border: none;
-    -webkit-transition: width 0.3s ease-in-out;
+    outline:none;
+    border-radius: 40px;
+    -webkit-transition: width 0.35s ease-in-out;
     color: white;
 }
 
-input[type=search]:focus{
+input[type=search]:hover{
     width:30%;
 }
 
@@ -60,7 +67,8 @@ input[type=search]:focus{
 }
 
 .container{
-    margin: 16px;
+    position: relative;
+    top: 10vh;
     width: 50% auto;
     text-align: center;
 }
