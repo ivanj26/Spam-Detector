@@ -1,5 +1,8 @@
+package com.stringmatcher.algorithm;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class Regex {
 	private Pattern patternCompile;

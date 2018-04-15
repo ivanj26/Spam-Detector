@@ -1,3 +1,5 @@
+package com.stringmatcher.algorithm;
+
 public class DriverRegex1 {
 	public static void main(String[] args)	{
 		Regex r = new Regex();
