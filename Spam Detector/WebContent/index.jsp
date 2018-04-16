@@ -19,7 +19,7 @@
    			        ({
    			            type: "GET",           
    			            data: {search: q},
-   			            url: 'SearchTweets',
+   			            url: 'ResponseTweets',
 	   			        success:function(content)
 	   			        {
  			        		$('#result').html(content);           
@@ -39,6 +39,11 @@
                 <input type="search" onblur="this.placeholder= 'Search tweets..'" tabindex="" onfocus="this.placeholder = ''" name="q" id="search">
             </form>
         </div>
-        <span id="result"></span>
+        <div class="row">
+        	<div class="container">
+        	</div>
+       		<div class="row">	
+       		</div>	
+        </div>
     </body>
 </html>

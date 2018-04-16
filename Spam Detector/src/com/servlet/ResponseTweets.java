@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class SearchTweets
  */
 @WebServlet("/SearchTweets")
-public class SearchTweets extends HttpServlet {
+public class ResponseTweets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public SearchTweets() {
+    public ResponseTweets() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,6 +29,8 @@ public class SearchTweets extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain");
+		
+		
 		PrintWriter out = response.getWriter();
 		out.print("Query: " + request.getParameter("search"));
 	}
