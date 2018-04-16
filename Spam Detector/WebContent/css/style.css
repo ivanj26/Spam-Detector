@@ -11,24 +11,24 @@
 .header{
     text-align: center;
     font-family: RalewayRegular;
+    border-radius: 15px;
     padding: 16px;
     color : #36486b;
-    background: #76ed98;
-    opacity: 0.60;
+    background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0.60);
+	filter: Alpha(opacity=0.7);
     box-sizing: border-box;
-    -moz-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
-    -webkit-box-shadow: 0px 2px 4px rgba(1, 2, 3, .5);
-    box-shadow: 0px 5px 3px rgba(0, 0, 0, .5);
 }
 
 /*Style Body*/
-body{
-    background-repeat: no-repeat;
-    background-size:100vw 100vh;
+html{
+    background-size:100vh 100vw;
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: linear-gradient(to bottom, #006699 0%, #006666 84%);
+    background: linear-gradient(to bottom, #006699 0%, #006666 84%) no-repeat;
+    background: -o-linear-gradient(to bottom, #006699 0%, #006666 84%) no-repeat;  
 }
 
 .search {
