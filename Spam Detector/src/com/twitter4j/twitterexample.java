@@ -8,7 +8,7 @@ import twitter4j.conf.ConfigurationBuilder;
  * @since Twitter4J 2.1.7
  */
 
-public class SearchTweets {
+public class twitterexample {
 	public static final String consumerKey = "N71R8sklH5dmwM90HP64pDdtK";
 	public static final String consumerSecret = "AxqgL8bG6oT2ScSR06xS18y4kuEHo5HJmwiCKgIzYlOEBCRmeC";
 	public static final String accessToken = "3603712758-ihWbDohJLacQGZELWQbooMNFB0aB9Ra4B7weXNf";
@@ -38,7 +38,7 @@ public class SearchTweets {
                 }
             } while ((query = result.nextQuery()) != null);
             System.exit(0);
-        } catch (TwitterException te) {
+        } catch (Exception te) {
             te.printStackTrace();
             System.out.println("Failed to search tweets: " + te.getMessage());
             System.exit(-1);

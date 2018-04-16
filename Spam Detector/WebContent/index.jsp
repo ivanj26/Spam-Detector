@@ -19,7 +19,7 @@
    			        ({
    			            type: "GET",           
    			            data: {search: q},
-   			            url: 'ResponseTweets',
+   			            url: 'SearchTweets',
 	   			        success:function(content)
 	   			        {
  			        		$('#result').html(content);           
@@ -41,6 +41,7 @@
         </div>
         <div class="row">
         	<div class="container">
+        		<p id = "result"> </p>
         	</div>
        		<div class="row">	
        		</div>	
