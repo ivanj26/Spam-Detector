@@ -10,9 +10,11 @@
     	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     	<script type="text/javascript">
     		$(document).ready(function(){
-    			$('#search').on('search', function(e){
+    			$('#searchtweets').on('search', function(e){
     				e.preventDefault();
     				$('#loading-image').show();
+    				$('#tweets').hide();
+	        		$('#keywordform').hide();
     				var q = $('#search').val();
     				$('div.header').hide(1000);
     				$('.container').animate({
@@ -25,8 +27,10 @@
    			            url: 'SearchTweets',
 	   			        success:function(content)
 	   			        {
- 			        		$('#result').html(content);    
+ 			        		<!--$('#result').html(content);-->    
  			        		$('#loading-image').hide();
+ 			        		$('#tweets').show();
+ 			        		$('#keywordform').show();
 	   			        }           
    			        });
     			});
@@ -38,20 +42,37 @@
             <h1>Spam Detector</h1>
             <p style="text-align: center"> A web based application detect spam using BM, KMP, and Regex Algorithm</p>
         </div>
-        <div class="container">
+       <div class="container">
             <form onSubmit="return false;">
-                <input type="search" onblur="this.placeholder= 'Search tweets..'" tabindex="" onfocus="this.placeholder = ''" name="q" id="search">
+                <input type="search" onblur="this.placeholder= 'Search tweets..'" tabindex="" onfocus="this.placeholder = ''" name="q" id="searchtweets">
             </form>
         </div>
         <div class="row" style="text-align: center">
              <img id="loading-image" src="https://loading.io/spinners/ellipsis/lg.discuss-ellipsis-preloader.gif" align="middle" hidden>
         </div>
+        <div class="container" id="keywordform" hidden style="margin-top: 10%;">
+          <form onSubmit="return false;">
+                <input type="search" onblur="this.placeholder= 'Type your keyword..'" tabindex="" onfocus="this.placeholder = ''" name="q" id="keywordspam">
+                <div class="radio-toolbar" id="algorithms" style="margin: 8px;">
+                    <input type="radio" name="algorithm" value="KMP" checked><label>KMP Algorithm</label>
+                    <input type="radio" name="algorithm" value="BM"><label>BM Algorithm</label>
+                    <input type="radio" name="algorithm" value="Regex"><label>Regex Algorithm</label>
+                </div>
+          </form>
+        </div>
         
-        <!--Buat query twitter-->
-        <div class="row" style="text-align: center; margin: 16px">
-            <p>
-                Test
-            </p>
+        <!-- Buat template setiap tweet post -->
+        <div class="row" style="position: relative; text-align: center; margin-top: 50px; max-width: 50%; margin-left: auto; margin-right: auto;" id="tweets" hidden>
+            <div class="tweetpost">
+                <p id="username" style="font-size: 14; font-family: Ralewayregular; text-align: left">@Alghifari says: </p>
+                <hr>
+                <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
+            </div>
+              <div class="tweetpost">
+                <p id="username" style="font-size: 14; font-family: Ralewayregular; text-align: left">@Alghifari says: </p>
+                <hr>
+                <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
+            </div>
         </div>
     </body>
 </html>
