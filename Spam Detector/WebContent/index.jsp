@@ -9,8 +9,8 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
     	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     	<script type="text/javascript">
-    		$(document).ready(function(){
-    			$('#searchtweets').on('search', function(e){
+    		$(document).ready(function (){
+    			$(document).on('search', '#searchtweets', function(e){
     				e.preventDefault();
     				$('#loading-image').show();
     				$('#tweets').hide();
@@ -34,6 +34,26 @@
 	   			        }           
    			        });
     			});
+    			$(document).on('search', '#keywordspam', function(e){
+    				e.preventDefault();
+    				var result;
+    				var keyword = $('#keywordspam').val();
+    				if (document.getElementById('kmp').checked){
+    					result = 1;
+    				} else if (document.getElementById('bm').checked){
+    					result = 2;
+    				} else {
+    					result = 3;
+    				}
+    				$.ajax({
+    					type: "GET",
+    					data: {algo: result, keyword: keyword},
+    					url: 'DoAlgorithm',
+    					success:function(content){
+    						$('tweets').html(content);
+    					}
+    				});
+    			});
     		});
     	</script>
     </head>
@@ -54,9 +74,9 @@
           <form onSubmit="return false;">
                 <input type="search" onblur="this.placeholder= 'Type your keyword..'" tabindex="" onfocus="this.placeholder = ''" name="q" id="keywordspam">
                 <div class="radio-toolbar" id="algorithms" style="margin: 8px;">
-                    <input type="radio" name="algorithm" value="KMP" checked><label>KMP Algorithm</label>
-                    <input type="radio" name="algorithm" value="BM"><label>BM Algorithm</label>
-                    <input type="radio" name="algorithm" value="Regex"><label>Regex Algorithm</label>
+                    <input type="radio" name="algorithm" id="kmp" value="KMP" checked><label>KMP Algorithm</label>
+                    <input type="radio" name="algorithm" id="bm" value="BM"><label>BM Algorithm</label>
+                    <input type="radio" name="algorithm" id="regex" value="Regex"><label>Regex Algorithm</label>
                 </div>
           </form>
         </div>

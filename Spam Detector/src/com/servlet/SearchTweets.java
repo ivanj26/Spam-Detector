@@ -1,5 +1,6 @@
 package com.servlet;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
@@ -42,6 +44,7 @@ public class SearchTweets extends HttpServlet {
     			.setOAuthAccessToken(accessToken)
     			.setOAuthAccessTokenSecret(accessTokenSecret)
     			.setTweetModeExtended(true);
+		HttpSession session=request.getSession(); 
 		
 		TwitterFactory factory = new TwitterFactory(cb.build());
         Twitter twitter = factory.getInstance();
@@ -50,10 +53,16 @@ public class SearchTweets extends HttpServlet {
         try {
         	Query query = new Query(request.getParameter("search"));
             QueryResult result;
+            
+            //List of username
+            List<String> userNames = new ArrayList<String>();
+            List<String> posts = new ArrayList<String>();
             do {
                 result = twitter.search(query);
                 List<Status> tweets = result.getTweets();
                 for (Status tweet : tweets) {
+                	userNames.add(tweet.getUser().getScreenName());
+                	posts.add(tweet.getText());
                 	out.println("<div class=\"tweetpost\">");
                 	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
                 	out.print("@" + tweet.getUser().getScreenName() + " tweets:</p>");
@@ -61,6 +70,8 @@ public class SearchTweets extends HttpServlet {
                 	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + tweet.getText() + "</pre>\n</div>");
                     //out.print("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
                 }
+               session.setAttribute("usernames", userNames);
+               session.setAttribute("posts", posts);
             } while ((query = result.nextQuery()) != null);
         } catch (Exception ex) {
         	ex.printStackTrace();
