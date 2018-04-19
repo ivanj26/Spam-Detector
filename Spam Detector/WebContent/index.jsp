@@ -15,7 +15,7 @@
     				$('#loading-image').show();
     				$('#tweets').hide();
 	        		$('#keywordform').hide();
-    				var q = $('#search').val();
+    				var q = $('#searchtweets').val();
     				$('div.header').hide(1000);
     				$('.container').animate({
     					top: '0vh'
@@ -27,7 +27,7 @@
    			            url: 'SearchTweets',
 	   			        success:function(content)
 	   			        {
- 			        		<!--$('#result').html(content);-->    
+ 			        		$('#tweets').html(content);    
  			        		$('#loading-image').hide();
  			        		$('#tweets').show();
  			        		$('#keywordform').show();
@@ -48,7 +48,7 @@
             </form>
         </div>
         <div class="row" style="text-align: center">
-             <img id="loading-image" src="https://loading.io/spinners/ellipsis/lg.discuss-ellipsis-preloader.gif" align="middle" hidden>
+             <img id="loading-image" src="https://loading.io/spinners/ellipsis/lg.discuss-ellipsis-preloader.gif" align="middle" hidden style="margin-top: 10%;">
         </div>
         <div class="container" id="keywordform" hidden style="margin-top: 10%;">
           <form onSubmit="return false;">
@@ -63,7 +63,7 @@
         
         <!-- Buat template setiap tweet post -->
         <div class="row" style="position: relative; text-align: center; margin-top: 50px; max-width: 50%; margin-left: auto; margin-right: auto;" id="tweets" hidden>
-            <div class="tweetpost">
+            <!-- <div class="tweetpost">
                 <p id="username" style="font-size: 14; font-family: Ralewayregular; text-align: left">@Alghifari says: </p>
                 <hr>
                 <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
@@ -73,6 +73,7 @@
                 <hr>
                 <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
             </div>
+            -->
         </div>
     </body>
 </html>

@@ -54,7 +54,12 @@ public class SearchTweets extends HttpServlet {
                 result = twitter.search(query);
                 List<Status> tweets = result.getTweets();
                 for (Status tweet : tweets) {
-                    out.print("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+                	out.println("<div class=\"tweetpost\">");
+                	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+                	out.print("@" + tweet.getUser().getScreenName() + " tweets:</p>");
+                	out.println("<hr>");
+                	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + tweet.getText() + "</pre>\n</div>");
+                    //out.print("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
                 }
             } while ((query = result.nextQuery()) != null);
         } catch (Exception ex) {
