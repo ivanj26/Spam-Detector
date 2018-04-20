@@ -50,7 +50,6 @@
     					data: {algo: result, keyword: keyword},
     					url: 'DoAlgorithm',
     					success:function(content){
-    						alert(content);
     						$('#tweets').html(content);
     					}
     				});
@@ -61,7 +60,7 @@
 	<body>
         <div class="header">
             <h1>Spam Detector</h1>
-            <p style="text-align: center"> A web based application detect spam using BM, KMP, and Regex Algorithm</p>
+            <pre style="font-family: Ralewayregular;"><p style="text-align: center"> A web based application detect spam using BM, KMP, and Regex Algorithm</p><p style="font-size: 7;">Author: Ivan J (059), Jose H (027), Alghi (038)</p></pre>
         </div>
        <div class="container">
             <form onSubmit="return false;">

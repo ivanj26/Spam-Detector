@@ -15,7 +15,7 @@ public class BMAlgorithm {
 
 		uniqueStr = new StringBuffer();
 		for (int i = 0; i < m; i++) {
-			char current = pattern.charAt(i);
+			char current = Character.toLowerCase(pattern.charAt(i));
 			if (uniqueStr.toString().indexOf(current) < 0) {
 				uniqueStr.append(current);
 			}
@@ -27,7 +27,7 @@ public class BMAlgorithm {
 			boolean isFound = false;
 			int j = m-1;
 			while (!isFound && j >= 0) {
-				if (pattern.charAt(j) == uniqueStr.charAt(i)) {
+				if (Character.toLowerCase(pattern.charAt(j)) == Character.toLowerCase(uniqueStr.charAt(i))) {
 					isFound = true;
 					LOfunc[i] = j;
 				} else {
@@ -46,7 +46,7 @@ public class BMAlgorithm {
 			int j = m-1; //Untuk pattern
 
 			while (i < n) {
-				if (pattern.charAt(j) == text.charAt(i)) {
+				if (Character.toLowerCase(pattern.charAt(j)) == Character.toLowerCase(text.charAt(i))) {
 					if (j == 0) {
 						return i;
 					} else {

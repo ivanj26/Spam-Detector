@@ -25,7 +25,7 @@ public class KMPAlgorithm {
 		int i = 1;
 
 		while (i < m-1) {
-			if (pattern.charAt(j) == pattern.charAt(i)) {
+			if (Character.toLowerCase(pattern.charAt(j)) == Character.toLowerCase(pattern.charAt(i))) {
 				b[i] = j + 1;
 				i++;
 				j++;
@@ -44,7 +44,7 @@ public class KMPAlgorithm {
 		int i = 0;
 
 		while (j < n) {
-			if (pattern.charAt(i) == text.charAt(j)) {
+			if (Character.toLowerCase(pattern.charAt(i)) == Character.toLowerCase(text.charAt(j))) {
 				if (i == m-1)
 					return j - m + 1;
 				i++;
