@@ -1,6 +1,7 @@
 package com.servlet;
 
-import com.stringmatcher.algorithm.*;
+import com.stringmatcher.algorithm.KMPAlgorithm;
+import com.stringmatcher.algorithm.BMAlgorithm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class DoAlgorithm extends HttpServlet {
 				if (matchAt > -1) { //ketemu
                 	String highlightedText = null;
                 	if (matchAt > 0) {
-                		highlightedText = posts.get(i).substring(0, matchAt-1) + " <mark> " + posts.get(i).substring(matchAt, matchAt + keyword.length()) + " </mark>";
+                		highlightedText = posts.get(i).substring(0, matchAt-1) + " <mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
                 		if (matchAt+keyword.length() != posts.get(i).length())
                 			highlightedText += posts.get(i).substring(matchAt+keyword.length(), posts.get(i).length());
                 	} else {
@@ -65,7 +66,27 @@ public class DoAlgorithm extends HttpServlet {
 				}
 			}
 		} else if (algo == 2) {//bm
-		
+			for (int i = 0; i < userNames.size(); i++) {
+				BMAlgorithm bmAlgo = new BMAlgorithm(posts.get(i), keyword);
+				int matchAt = bmAlgo.matchAt();
+				out.println("<div class=\"tweetpost\">");
+            	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+            	out.print("@" + userNames.get(i) + " tweets:</p>");
+            	out.println("<hr>");
+				if (matchAt > -1) { //ketemu
+                	String highlightedText = null;
+                	if (matchAt > 0) {
+                		highlightedText = posts.get(i).substring(0, matchAt-1) + " <mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
+                		if (matchAt+keyword.length() != posts.get(i).length())
+                			highlightedText += posts.get(i).substring(matchAt+keyword.length(), posts.get(i).length());
+                	} else {
+                		highlightedText = "<mark>" + posts.get(i).substring(matchAt, keyword.length()) + "</mark>" + posts.get(i).substring(keyword.length(), posts.get(i).length());
+                	} 
+                	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
+				} else {
+					out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(i) + "</pre>\n</div>");
+				}
+			}
 		} else { //regex
 			
 		}
