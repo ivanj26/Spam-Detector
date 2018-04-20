@@ -50,7 +50,7 @@
     					data: {algo: result, keyword: keyword},
     					url: 'DoAlgorithm',
     					success:function(content){
-    						$('tweets').html(content);
+    						$('#tweets').html(content);
     					}
     				});
     			});
