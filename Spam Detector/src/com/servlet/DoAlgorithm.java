@@ -1,6 +1,7 @@
 package com.servlet;
 
 import com.stringmatcher.algorithm.KMPAlgorithm;
+import com.stringmatcher.algorithm.Regex;
 import com.stringmatcher.algorithm.BMAlgorithm;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -88,7 +89,35 @@ public class DoAlgorithm extends HttpServlet {
 				}
 			}
 		} else { //regex
-			
+			boolean match;
+			Regex regexAlgo = new Regex();
+			for (int i = 0; i < userNames.size(); i++) {
+				regexAlgo.proccess(posts.get(i), keyword);
+				match = regexAlgo.matches();
+				out.println("<div class=\"tweetpost\">");
+            	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+            	out.print("@" + userNames.get(i) + " tweets:</p>");
+            	out.println("<hr>");
+				if (match == true) { //ketemu
+					int matchF;
+					int matchL;
+					String highlightedText = null;
+					for (int j=0; j<regexAlgo.getPatternSize(); j++)	{
+						matchF = regexAlgo.getIdxStartAt(j);
+						matchL = regexAlgo.getIdxFinishAt(j);
+	                	if (matchF > 0) {
+	                		highlightedText = posts.get(i).substring(0, matchF-1) + " <mark>" + posts.get(i).substring(matchF, matchL) + "</mark>";
+	                		if (matchL != posts.get(i).length())
+	                			highlightedText += posts.get(i).substring(matchL, posts.get(i).length());
+	                	} else {
+	                		highlightedText = "<mark>" + posts.get(i).substring(matchF, matchL) + "</mark>" + posts.get(i).substring(keyword.length(), posts.get(i).length());
+	                	}
+					}
+                	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
+				} else {
+					out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(i) + "</pre>\n</div>");
+				}
+			}
 		}
 	}
 

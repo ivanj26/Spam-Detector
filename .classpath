@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Spam Detector/src"/>
+	<classpathentry kind="src" path="Twitter/src"/>
+	<classpathentry kind="lib" path="Spam Detector/lib/twitter4j-core-4.0.6.jar"/>
+	<classpathentry kind="lib" path="Spam Detector/WebContent/WEB-INF/lib/twitter4j-core-4.0.6.jar"/>
+	<classpathentry kind="output" path="Spam Detector/build/classes"/>
+</classpath>
