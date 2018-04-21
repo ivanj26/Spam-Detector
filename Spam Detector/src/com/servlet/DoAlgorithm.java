@@ -110,7 +110,7 @@ public class DoAlgorithm extends HttpServlet {
 	                		if (matchL != posts.get(i).length())
 	                			highlightedText += posts.get(i).substring(matchL, posts.get(i).length());
 	                	} else {
-	                		highlightedText = "<mark>" + posts.get(i).substring(matchF, matchL) + "</mark>" + posts.get(i).substring(keyword.length(), posts.get(i).length());
+	                		highlightedText = "<mark>" + posts.get(i).substring(matchF, matchL) + "</mark>" + posts.get(i).substring(matchL, posts.get(i).length());
 	                	}
 					}
                 	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");

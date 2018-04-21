@@ -57,6 +57,7 @@ public class SearchTweets extends HttpServlet {
             //List of username
             List<String> userNames = new ArrayList<String>();
             List<String> posts = new ArrayList<String>();
+            int i = 0;
             do {
                 result = twitter.search(query);
                 List<Status> tweets = result.getTweets();
@@ -69,9 +70,14 @@ public class SearchTweets extends HttpServlet {
                 	out.println("<hr>");
                 	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + tweet.getText() + "</pre>\n</div>");
                     //out.print("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+                	if (i == 25)
+                		break;
+                	i++;
                 }
                session.setAttribute("usernames", userNames);
                session.setAttribute("posts", posts);
+               if (i == 25)
+            	   break;
             } while ((query = result.nextQuery()) != null);
         } catch (Exception ex) {
         	ex.printStackTrace();
