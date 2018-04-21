@@ -8,5 +8,8 @@ public class DriverRegex1 {
 		//itb -> T nya jadi uppercase
 		//informatika -> typo satu huruf dari o jadi tidak ada
 		System.out.println(r.matches());
+		for (int i=0; i<r.getPatternSize(); i++)	{
+			System.out.println(r.getText().substring(r.getIdxStartAt(i),r.getIdxFinishAt(i)));
+		}
 	}
 }

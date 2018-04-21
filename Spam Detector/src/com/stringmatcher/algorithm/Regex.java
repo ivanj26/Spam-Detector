@@ -11,24 +11,54 @@ public class Regex {
 	private String text;
 	private String[] pattern;
 	private String[] patternUL;
+	private int[] idxstart;
+	private int[] idxfinish;
+	private int patternSize;
 	
-	Regex() {}
+	public Regex() {}
 	public void proccess(String text, String pattern)	{
 		this.text = text;
 		this.pattern = pattern.split(" ");
-		this.patternUL = new String[this.pattern.length];		
+		this.patternSize = this.pattern.length;
+		this.patternUL = new String[patternSize];
 		this.generateRegexUpperLowerCase();
-		this.generateRegex();
+		this.generateRegexAll();
+		if (this.matches()==true)	{
+			this.highlight();
+		}
+	}
+	public int getIdxStartAt(int i)	{
+		return idxstart[i];
+	}
+	public int getIdxFinishAt(int i) {
+		return idxfinish[i];
+	}
+	public int getPatternSize()	{
+		return patternSize;
+	}
+	public String getText()	{
+		return text;
+	}
+	public void highlight()	{
+		this.idxstart = new int[patternSize];
+		this.idxfinish = new int[patternSize];
+		for (int i=0; i<patternSize; i++)	{
+			patternCompile = Pattern.compile("\\b" + patternUL[i] + "\\b");
+			matcher = patternCompile.matcher(text);
+			matcher.find();
+			idxstart[i] = matcher.start();
+			idxfinish[i] = matcher.end();
+		}
 	}
 	public void printRegex()	{
 		System.out.println(regex);
 	}
-	public void printpattern()	{
+	public void printPattern()	{
 		for (int i=0; i<pattern.length; i++)	{
 			System.out.println(pattern[i]);
 		}
 	}
-	public void printpatternUL()	{
+	public void printPatternUL()	{
 		for (int i=0; i<patternUL.length; i++)	{
 			System.out.println(patternUL[i]);
 		}		
@@ -49,7 +79,7 @@ public class Regex {
 			patternUL[i] += ")";
 		}
 	}
-	private void generateRegex()	{
+	private void generateRegexAll()	{
 		regex = ".*(";
 		int[] order = new int[patternUL.length];
 		for (int i=0; i<patternUL.length; i++)	{
