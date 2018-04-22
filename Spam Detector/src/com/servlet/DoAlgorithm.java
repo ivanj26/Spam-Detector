@@ -44,18 +44,20 @@ public class DoAlgorithm extends HttpServlet {
 		
 		int algo = Integer.parseInt(request.getParameter("algo"));
 		PrintWriter out = response.getWriter();
+		ArrayList<Integer> filtered = new ArrayList<Integer>();
 		if (algo == 1) { //kmp
+    		out.print("<div id=\"Spam\" class=\"tabcontent\">");
 			for (int i = 0; i < userNames.size(); i++) {
 				KMPAlgorithm kmpAlgo = new KMPAlgorithm(posts.get(i), keyword);
 				int matchAt = kmpAlgo.matchAt();
-				out.println("<div class=\"tweetpost\">");
-            	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
-            	out.print("@" + userNames.get(i) + " tweets:</p>");
-            	out.println("<hr>");
-				if (matchAt > -1) { //ketemu
-                	String highlightedText = null;
+            	String highlightedText = "";
+            	if (matchAt > -1) { //ketemu
+    				out.println("<div class=\"tweetpost\">");
+                	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+                	out.print("@" + userNames.get(i) + " tweets:</p>");
+                	out.println("<hr>");
                 	if (matchAt > 0) {
-                		highlightedText = posts.get(i).substring(0, matchAt-1) + " <mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
+                		highlightedText = posts.get(i).substring(0, matchAt-1) + "<mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
                 		if (matchAt+keyword.length() != posts.get(i).length())
                 			highlightedText += posts.get(i).substring(matchAt+keyword.length(), posts.get(i).length());
                 	} else {
@@ -63,21 +65,23 @@ public class DoAlgorithm extends HttpServlet {
                 	} 
                 	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
 				} else {
-					out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(i) + "</pre>\n</div>");
+					filtered.add(i);
 				}
 			}
+			out.println("</div>");
 		} else if (algo == 2) {//bm
+    		out.print("<div id=\"Spam\" class=\"tabcontent\">");
 			for (int i = 0; i < userNames.size(); i++) {
 				BMAlgorithm bmAlgo = new BMAlgorithm(posts.get(i), keyword);
 				int matchAt = bmAlgo.matchAt();
-				out.println("<div class=\"tweetpost\">");
-            	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
-            	out.print("@" + userNames.get(i) + " tweets:</p>");
-            	out.println("<hr>");
-				if (matchAt > -1) { //ketemu
-                	String highlightedText = null;
+            	String highlightedText = "";
+            	if (matchAt > -1) { //ketemu
+    				out.println("<div class=\"tweetpost\">");
+                	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+                	out.print("@" + userNames.get(i) + " tweets:</p>");
+                	out.println("<hr>");
                 	if (matchAt > 0) {
-                		highlightedText = posts.get(i).substring(0, matchAt-1) + " <mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
+                		highlightedText = posts.get(i).substring(0, matchAt-1) + "<mark>" + posts.get(i).substring(matchAt, matchAt + keyword.length()) + "</mark>";
                 		if (matchAt+keyword.length() != posts.get(i).length())
                 			highlightedText += posts.get(i).substring(matchAt+keyword.length(), posts.get(i).length());
                 	} else {
@@ -85,47 +89,57 @@ public class DoAlgorithm extends HttpServlet {
                 	} 
                 	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
 				} else {
-					out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(i) + "</pre>\n</div>");
+					filtered.add(i);
 				}
 			}
+			out.println("</div>");
 		} else { //regex
 			boolean match;
 			Regex r = new Regex(posts.get(0), keyword);
-			out.println("<div class=\"tweetpost\">");
-        	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
-			out.print("<h3>Regex:</h3>");
-        	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + r.getRegex() + "</pre>\n</div>");
+    		out.print("<div id=\"Spam\" class=\"tabcontent\">");
 			for (int i = 0; i < userNames.size(); i++) {
 				Regex regexAlgo = new Regex(posts.get(i), keyword);
-				match = regexAlgo.matches();
-				out.println("<div class=\"tweetpost\">");
-            	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+				match = regexAlgo.getFound();
 				if (match == true) { //ketemu
+					String highlightedText = "";
 					int matchF;
 					int matchL;
 					int before;
-					String highlightedText = null;
+					out.println("<div class=\"tweetpost\">");
+		        	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+		        	out.print("@" + userNames.get(i) + " tweets:</p>");
+		        	out.println("<hr>");
 					for (int j=0; j<regexAlgo.getPatternSize(); j++)	{
 						before = 0;
 						matchF = regexAlgo.getIdxStartAt(j);
 						matchL = regexAlgo.getIdxFinishAt(j);
 	                	if (matchF > 0) {
-	                		highlightedText += posts.get(i).substring(before, matchF-1) + " <mark>" + posts.get(i).substring(matchF, matchL) + "</mark>";
+	                		highlightedText += posts.get(i).substring(before, matchF-1) + "<mark>" + posts.get(i).substring(matchF, matchL) + "</mark>";
 	                	} else {
 	                		highlightedText += "<mark>" + posts.get(i).substring(matchF, matchL) + "</mark>";
 	                	}
 	                	before = matchL+1;
 					}
 					matchL = regexAlgo.getIdxFinishAt(regexAlgo.getPatternSize()-1);
-                	if (matchL != posts.get(i).length())	{
-            			highlightedText += posts.get(i).substring(matchL, posts.get(i).length());
-                	}
-                	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
-				} else {
-					out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(i) + "</pre>\n</div>");
+	            	if (matchL != posts.get(i).length())	{
+	        			highlightedText += posts.get(i).substring(matchL, posts.get(i).length());
+	            	}
+	            	out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + highlightedText + "</pre>\n</div>");
+				} else	{
+					filtered.add(i);
 				}
 			}
+			out.println("</div>");
 		}
+		out.print("<div id=\"Filtered\" class=\"tabcontent\">");
+		for (int i = 0; i < filtered.size(); i++) {
+			out.println("<div class=\"tweetpost\">");
+        	out.print("<p id=\"username\" style=\"font-size: 14; font-family: Ralewayregular; text-align: left\">");
+        	out.print("@" + userNames.get(filtered.get(i)) + " tweets:</p>");
+        	out.println("<hr>");
+			out.print("<pre id = \"post\" style=\"white-space: inherit;\">" + posts.get(filtered.get(i)) + "</pre>\n</div>");
+		}
+		out.print("</div>");
 	}
 
 	/**

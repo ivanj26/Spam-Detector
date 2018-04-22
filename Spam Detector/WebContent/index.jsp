@@ -48,7 +48,7 @@
     				$.ajax({
     					type: "GET",
     					data: {algo: result, keyword: keyword},
-    					url: 'DoAlgorithm2',
+    					url: 'DoAlgorithm',
     					success:function(content){
     						$('#tab').show();
     						$('#tweets').html(content);
