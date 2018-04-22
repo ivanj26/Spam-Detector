@@ -1,8 +1,8 @@
 package com.stringmatcher.algorithm;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.util.regex.Matcher;
+import java.util.Arrays;
 
 public class Regex {
 	private Pattern patternCompile;
@@ -15,8 +15,7 @@ public class Regex {
 	private int[] idxfinish;
 	private int patternSize;
 	
-	public Regex() {}
-	public void proccess(String text, String pattern)	{
+	public Regex(String text, String pattern) {
 		this.text = text;
 		this.pattern = pattern.split(" ");
 		this.patternSize = this.pattern.length;
@@ -39,6 +38,9 @@ public class Regex {
 	public String getText()	{
 		return text;
 	}
+	public String getRegex()	{
+		return regex;
+	}
 	public void highlight()	{
 		this.idxstart = new int[patternSize];
 		this.idxfinish = new int[patternSize];
@@ -49,6 +51,8 @@ public class Regex {
 			idxstart[i] = matcher.start();
 			idxfinish[i] = matcher.end();
 		}
+		Arrays.sort(idxstart);
+		Arrays.sort(idxfinish);
 	}
 	public void printRegex()	{
 		System.out.println(regex);

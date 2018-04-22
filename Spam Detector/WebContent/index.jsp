@@ -48,9 +48,11 @@
     				$.ajax({
     					type: "GET",
     					data: {algo: result, keyword: keyword},
-    					url: 'DoAlgorithm',
+    					url: 'DoAlgorithm2',
     					success:function(content){
+    						$('#tab').show();
     						$('#tweets').html(content);
+    						
     					}
     				});
     			});
@@ -80,20 +82,32 @@
                 </div>
           </form>
         </div>
-        
+		<div class="container" id="tab" style="position: relative; text-align: center; margin-top: 50px; max-width: 12%; margin-left: auto; margin-right: auto;" hidden>
+			<div class="tab" >
+				<button class="tablinks" onclick="postType(event, 'Spam')"><strong>Spam</strong></button>
+				<button class="tablinks" onclick="postType(event, 'Filtered')"><strong>Filtered</strong></button>
+			</div>
+		</div>
+	        
         <!-- Buat template setiap tweet post -->
         <div class="row" style="position: relative; text-align: center; margin-top: 50px; max-width: 50%; margin-left: auto; margin-right: auto;" id="tweets" hidden>
-            <!-- <div class="tweetpost">
-                <p id="username" style="font-size: 14; font-family: Ralewayregular; text-align: left">@Alghifari says: </p>
-                <hr>
-                <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
-            </div>
-              <div class="tweetpost">
-                <p id="username" style="font-size: 14; font-family: Ralewayregular; text-align: left">@Alghifari says: </p>
-                <hr>
-                <pre id = "post" style="white-space: inherit;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</pre>
-            </div>
-            -->
         </div>
+        
+		<script type="text/javascript">
+		function postType(evt, cityName) {
+		    var i, tabcontent, tablinks;
+		    tabcontent = document.getElementsByClassName("tabcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+		    tablinks = document.getElementsByClassName("tablinks");
+		    for (i = 0; i < tablinks.length; i++) {
+		        tablinks[i].className = tablinks[i].className.replace(" active", "");
+		    }
+		    document.getElementById(cityName).style.display = "block";
+		    evt.currentTarget.className += " active";
+		}
+		</script>
+
     </body>
 </html>

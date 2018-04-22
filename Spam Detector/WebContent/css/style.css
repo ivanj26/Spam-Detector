@@ -138,3 +138,49 @@ hr{
     width: 50% auto;
     text-align: center;
 }
+
+/* Style the tab */
+.tab {
+	overflow: hidden;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+	text-align: center;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    position: relative;
+	display: none;
+    padding: 6px 12px;
+    border-top: none;
+    height: auto;
+}
+
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
