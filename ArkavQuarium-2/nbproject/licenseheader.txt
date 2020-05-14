@@ -1,8 +1,0 @@
-<#if licenseFirst??>
-${licenseFirst}
-</#if>
-${licensePrefix}ArkavQuarium
-${licensePrefix}
-<#if licenseLast??>
-${licenseLast}
-</#if>
