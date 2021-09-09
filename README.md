@@ -5,7 +5,7 @@ Web based -  Spam detector
 This app requires several requirements to run properly:
 1. Tomcat server.
 2. Java servlet API.
-3. Twitter4J library .jar.
+3. Twitter4J.
 
 # How to use?
 
