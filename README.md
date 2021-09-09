@@ -1,5 +1,5 @@
 # Spam-Detector
-Web based -  Spam detector
+Web based -  Spam detector with three alternatives algorithm (_**Knuth–Morris–Pratt**_, **_Boyer–Moore_**, and _**RegEx**_)
 
 # Requirements
 This app requires several requirements to run properly:
