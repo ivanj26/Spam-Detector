@@ -21,10 +21,10 @@ import twitter4j.conf.ConfigurationBuilder;
 @WebServlet("/SearchTweets")
 public class SearchTweets extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String consumerKey = "N71R8sklH5dmwM90HP64pDdtK";
-	public static final String consumerSecret = "AxqgL8bG6oT2ScSR06xS18y4kuEHo5HJmwiCKgIzYlOEBCRmeC";
-	public static final String accessToken = "3603712758-ihWbDohJLacQGZELWQbooMNFB0aB9Ra4B7weXNf";
-	public static final String accessTokenSecret = "Ji2QaxEOwymNqU30PAvtU1GGg8kXfs7NQIMfSHU4tTXP3";
+	public static final String consumerKey = "<YOUR_CONSUMER_KEY>";
+	public static final String consumerSecret = "<YOUR_CONSUMER_SECRET_KEY>";
+	public static final String accessToken = "<YOUR_ACCESS_TOKEN>";
+	public static final String accessTokenSecret = "<YOUR_ACCESS_TOKEN_SECRET>";
 
     /**
      * Default constructor. 
