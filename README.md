@@ -1,6 +1,9 @@
 # Spam-Detector
 Web based -  Spam detector with three alternatives algorithm (_**Knuth–Morris–Pratt**_, **_Boyer–Moore_**, and _**RegEx**_)
 
+# Type of Project
+School Project
+
 # Requirements
 This app requires several requirements to run properly:
 1. Tomcat server.
